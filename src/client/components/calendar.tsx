@@ -5,22 +5,21 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interaction from '@fullcalendar/interaction'
 import timeGridDay from '@fullcalendar/timegrid'
 import timeGridWeek from '@fullcalendar/timegrid'
-import '../client/scss/app.scss'
-import { useState, useEffect} from 'react'
-import {useRef} from 'react'
-import { json } from '../client/utils/api'
+import { useState, useEffect } from 'react'
+import { useRef } from 'react'
+import { json } from '../utils/api'
 import bootstrapPlugin from '@fullcalendar/bootstrap'
-import {IEvents} from '../client/utils/interfaces'
+import { IEvents } from '../utils/interfaces'
 
 const Calendar: React.SFC<ICalendarProps> = (props) => {
 
-const calendarRef= useRef()
+    const calendarRef = useRef()
 
     const [events, setEvents] = useState<IEvents[]>([])
 
     const getEvents = async () => {
         try {
-           let events= await json('/api/events')
+            let events = await json('/api/events')
             setEvents(events)
             console.log(events)
         } catch (e) {
@@ -30,15 +29,35 @@ const calendarRef= useRef()
 
     useEffect(() => { getEvents() }, [])
 
+
+
+
+    const handleDateClick = (date) => {
+        events.map(event => {
+            return(
+                console.log(event.start_date)
+
+            )
+
+        }
+        )
+    }
+
+
+
+
+
     return (
         <main className="container my-5 shadow-lg">
             <FullCalendar
                 themeSystem='bootstrap'
                 defaultView='dayGridMonth'
-                plugins={[dayGridPlugin, bootstrapPlugin, interaction, timeGridDay,timeGridWeek]}
+                plugins={[dayGridPlugin, bootstrapPlugin, interaction, timeGridDay, timeGridWeek]}
                 events={events}
                 ref={calendarRef}
+                dateClick={handleDateClick}
             />
+
         </main>
     )
 }

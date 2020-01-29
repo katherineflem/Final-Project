@@ -9,7 +9,6 @@ router.get('/', async (req, res)=>{
     try{
         let events= await db.Events.allEvents()
         res.json(events)
-        console.log(events)
     }catch(e){
         console.log(e)
         res.sendStatus(500)

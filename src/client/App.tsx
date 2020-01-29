@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import Dashboard from '../pages/Dashboard'
+import Dashboard from '../client/pages/Dashboard'
 
 class App extends React.Component<IAppProps, IAppState> {
 

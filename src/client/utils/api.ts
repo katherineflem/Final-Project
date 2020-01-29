@@ -6,8 +6,8 @@ export const json = async <T = any>(url: string, method: string = 'GET', body?: 
     let headers: any = {
         'Content-type': 'application/json'
     }
-    if (AccessToken) {
-        headers['Authorization'] = `Bearer ${AccessToken}`
+    // if (AccessToken) {
+    //     headers['Authorization'] = `Bearer ${AccessToken}`
         try {
             let result = await fetch(url, {
                 method: method,
